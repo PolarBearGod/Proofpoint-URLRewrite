@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Proofpoint URL Decoder">
+		<meta name="author" content="TheRealBards">
+		<title>Proofpoint URL Decoder</title>
+	</head>
+	<body>
+		Encoded URL: <input type="text" id="encoded_url" value="">
+
+		<button onclick="URLDecode()">Decode</button>
+
+		<p id="decoded_url"></p>
+
+		<script>
+			function URLDecode() {
+				var url = document.getElementById("encoded_url").value;
+				var proofpoint = /https:\/\/urldefense.proofpoint.com\/(v[0-9])\//;
+
+				if (proofpoint.test(url) == true) {
+					var match = proofpoint.exec(url);
+					if (match[1] == "v1") {
+						decodev1(url);
+					} else if (match[1] == "v2") {
+						decodev2(url);
+					} else {
+						console.log("No valid URL found in input: ", url)
+					}
+				}
+			}
+			
+			function decodev1(rewrittenurl) {
+			// Not tested this, not sure if it works!
+				match = /u=(.+?)&k=/;
+				if (match.test(url) == true) {
+					var encodedurl = match.exec(match[1]);
+					console.log(encodedurl);
+				}
+			}
+
+			function decodev2(rewrittenurl) {
+				var match = /u=(.+?)&[dc]=/;
+				if (match.test(rewrittenurl) == true) {
+					var encodedurl = match.exec(rewrittenurl)[1]
+					var transform = encodedurl.replace(/-/g,'%').replace(/_/g,'/');
+					var decoded_url = decodeURIComponent(transform);
+					document.getElementById("decoded_url").innerHTML = decoded_url;
+				}
+			}		
+		</script>
+	</body>
+</html>
