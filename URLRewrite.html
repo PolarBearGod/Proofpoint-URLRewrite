@@ -33,9 +33,9 @@
 			function decodev1(rewrittenurl) {
 			// Not tested this, not sure if it works!
 				match = /u=(.+?)&k=/;
-				if (match.test(url) == true) {
-					var encodedurl = match.exec(match[1]);
-					console.log(encodedurl);
+				if (match.test(rewrittenurl) == true) {
+					var decoded_url = match.exec(rewrittenurl)[1];
+					document.getElementById("decoded_url").innerHTML = decoded_url;
 				}
 			}
 
