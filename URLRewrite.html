@@ -3,21 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="description" content="Proofpoint URL Decoder">
-		<meta name="author" content="TheRealBards">
+		<meta name="modified.author" content="PolarBearGod">
 		<title>Proofpoint URL Decoder</title>
 	</head>
 	<body>
-		Encoded URL: <input type="text" id="encoded_url" value="">
-
+		<h1><strong>ProofPoint Encoded URL</strong></h1>
+		<p><input id="encoded_url" size="50" type="text" value="" /></p>
 		<button onclick="URLDecode()">Decode</button>
-
 		<p id="decoded_url"></p>
-
 		<script>
 			function URLDecode() {
 				var url = document.getElementById("encoded_url").value;
 				var proofpoint = /https:\/\/urldefense.proofpoint.com\/(v[0-9])\//;
-
 				if (proofpoint.test(url) == true) {
 					var match = proofpoint.exec(url);
 					if (match[1] == "v1") {
@@ -31,7 +28,6 @@
 			}
 			
 			function decodev1(rewrittenurl) {
-			// Not tested this, not sure if it works!
 				match = /u=(.+?)&k=/;
 				if (match.test(rewrittenurl) == true) {
 					var decoded_url = match.exec(rewrittenurl)[1];
